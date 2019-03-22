@@ -2,7 +2,6 @@ package com.wys.lib.drawer;
 
 import android.content.res.Resources;
 import android.graphics.SurfaceTexture;
-import android.opengl.GLES11Ext;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
@@ -43,7 +42,7 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     private float[] SM = new float[16];
 
     public CameraDrawer(Resources resources){
-        showFilter = new NoFilter(resources);
+        showFilter = new CameraFilter(resources);
         drawFilter = new CameraFilter(resources);
 
 //        drawFilter = new
@@ -125,5 +124,7 @@ public class CameraDrawer implements GLSurfaceView.Renderer {
     /**根据摄像头设置纹理映射坐标*/
     public void setCameraId(int id) {
         drawFilter.setFlag(id);
+        showFilter.setFlag(id);
     }
 }
+

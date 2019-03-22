@@ -3,12 +3,12 @@ package com.wys.lib.widget;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 
 import com.wys.lib.camera.CameraController;
 import com.wys.lib.drawer.CameraDrawer;
-import com.wys.lib.utils.OpenGLUtil;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -52,7 +52,7 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
         mCamera.close();
         mCamera.open(cameraId);
         mCameraDrawer.setCameraId(cameraId);
-        mCameraDrawer.setCameraId(cameraId);
+//        mCameraDrawer.setCameraId(cameraId);
         final Point previewSize=mCamera.getPreviewSize();
         dataWidth = previewSize.x;
         dataHeight = previewSize.y;
@@ -112,5 +112,16 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
     @Override
     public void onFrameAvailable(SurfaceTexture surfaceTexture) {
         this.requestRender();
+    }
+
+    /**
+     * 摄像头聚焦
+     */
+    public void onFocus(Point point, Camera.AutoFocusCallback callback) {
+        mCamera.onFocus(point, callback);
+    }
+
+    public int getCameraId() {
+        return cameraId;
     }
 }
