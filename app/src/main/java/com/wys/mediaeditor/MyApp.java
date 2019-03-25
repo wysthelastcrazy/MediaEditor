@@ -1,6 +1,7 @@
 package com.wys.mediaeditor;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.wys.lib.Constants;
 
@@ -9,9 +10,15 @@ import com.wys.lib.Constants;
  * Describe:
  */
 public class MyApp extends Application {
+    private static Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
         Constants.init(this);
+        mContext=this;
+    }
+
+    public static Context getContext() {
+        return mContext;
     }
 }

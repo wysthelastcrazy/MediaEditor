@@ -124,4 +124,26 @@ public class CameraView extends GLSurfaceView implements GLSurfaceView.Renderer,
     public int getCameraId() {
         return cameraId;
     }
+
+    public void startRecord() {
+        queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                mCameraDrawer.startRecord();
+            }
+        });
+    }
+
+    public void stopRecord() {
+        queueEvent(new Runnable() {
+            @Override
+            public void run() {
+                mCameraDrawer.stopRecord();
+            }
+        });
+    }
+
+    public void setSavePath(String path) {
+        mCameraDrawer.setSavePath(path);
+    }
 }
